@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML & Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.65;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        @media print {
+            body { 
+                background: white; 
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .no-print { display: none !important; }
+            .project {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            .divider {
+                page-break-after: always;
+                margin: 20px 0;
+                border: none;
+                height: 0;
+            }
+            header {
+                page-break-after: avoid;
+            }
+            footer {
+                page-break-before: avoid;
+            }
+            pre {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @page {
+            size: A4;
+            margin: 0.5in;
+            @bottom-center {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .no-print {
+            text-align: center;
+            padding: 15px;
+            background: #ecf0f1;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .no-print button {
+            background: #3498db;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95em;
+        }
+
+        .no-print button:hover {
+            background: #2980b9;
+        }
+
+        .project {
+            margin-bottom: 50px;
+            border-left: 5px solid #3498db;
+            padding-left: 20px;
+            page-break-inside: avoid;
+        }
+
+        .project-number {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .project h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .project-subtitle {
+            color: #7f8c8d;
+            font-size: 1em;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            background: #ecf0f1;
+            padding: 10px 14px;
+            border-radius: 4px;
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 12px;
+            border-left: 4px solid #3498db;
+        }
+
+        .section-content {
+            padding-left: 0;
+            color: #34495e;
+            line-height: 1.75;
+        }
+
+        .content-text {
+            margin-bottom: 12px;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+            margin: 12px 0;
+            font-size: 0.95em;
+        }
+
+        .code-label {
+            background: #34495e;
+            color: #2ecc71;
+            padding: 6px 12px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin: 15px 0 8px 0;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 14px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            margin: 8px 0 12px 0;
+            line-height: 1.5;
+            border-left: 3px solid #3498db;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .tech-tag {
+            background: #3498db;
+            color: white;
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .metric-card {
+            background: #f0fff4;
+            border-left: 4px solid #27ae60;
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            color: #34495e;
+            font-size: 0.9em;
+        }
+
+        ul, ol {
+            margin-left: 18px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: #34495e;
+        }
+
+        strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 2px;
+            background: #ecf0f1;
+            margin: 35px 0;
+        }
+
+        footer {
+            background: #ecf0f1;
+            padding: 25px 40px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .cover-page {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            page-break-after: always;
+        }
+
+        .cover-page h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.8em;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cover-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 30px;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .cover-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .cover-section p {
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .cover-section ul {
+            margin-left: 20px;
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .cover-section li {
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .cover-footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .cover-footer p {
+            margin-bottom: 8px;
+        }
+
+        .github-links {
+            margin-top: 20px;
+            font-size: 0.85em;
+            opacity: 0.85;
+        }
+
+        .github-links a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .github-links a:hover {
+            text-decoration: underline;
+        }
+
+        .sub-title {
+            color: #7f8c8d;
+            font-weight: 600;
+            margin-top: 12px;
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cover-page">
+            <h1>ML & Data Science Portfolio</h1>
+            <p class="cover-subtitle">Advanced Analytics & Deep Learning Projects</p>
+
+            <div class="cover-section">
+                <h2>📋 Sample Portfolio Generated Using Claude LLM</h2>
+                <p><strong>Purpose:</strong> Comprehensive analysis and documentation of 6 advanced machine learning projects from GitHub repositories.</p>
+            </div>
+
+            <div class="cover-section">
+                <h2>🎯 Prompt Used</h2>
+                <p><strong>Task:</strong> Create an insightful and professional portfolio sample based on GitHub projects.</p>
+                <p style="margin-top: 15px;"><strong>Requirements:</strong></p>
+                <ul>
+                    <li>Analyze each repository in detail</li>
+                    <li>Include Project Goals: Problem statement and solution approach</li>
+                    <li>Provide Key Technical Highlights: Well-commented code snippets</li>
+                    <li>Detail Data Science & ML Techniques: Algorithms, architectures, preprocessing, metrics</li>
+                    <li>Emphasize ML depth: Model training, evaluation, and deployment strategies</li>
+                    <li>Demonstrate production-grade code quality</li>
+                </ul>
+            </div>
+
+            <div class="cover-section">
+                <h2>📦 GitHub Repositories Analyzed</h2>
+                <div class="github-links">
+                    <p>✓ FlipScan-AI - Intelligent Document Digitization</p>
+                    <p>✓ Talents-Insight-Tool - Semantic Candidate Ranking</p>
+                    <p>✓ Call-Success-ML-Advisor - Banking Campaign Prediction</p>
+                    <p>✓ Stock-Forecaster - Value Investing Decision Support</p>
+                    <p>✓ Happiness-Insight - Customer Satisfaction Prediction</p>
+                    <p>✓ Crypto-Trading-Bot - Wave Trend Momentum Strategy</p>
+                </div>
+            </div>
+
+            <div class="cover-footer">
+                <p><strong>Portfolio Contents:</strong> 6 Complete Projects | Code Snippets | ML Techniques | Performance Metrics | Tech Stack</p>
+                <p><strong>Generated By:</strong> Claude (Anthropic) | <strong>Date:</strong> November 2024</p>
+            </div>
+        </div>
+
+        <div style="page-break-after: always;"></div>
+
+        <header>
+            <h1>ML & Data Science Portfolio</h1>
+            <p>Advanced Projects in Computer Vision, NLP & Predictive Analytics</p>
+        </header>
+
+        <div class="content">
+            <div class="no-print">
+                <button onclick="window.print()">📄 Print / Save as PDF</button>
+            </div>
+
+            <!-- PROJECT 1: FlipScan-AI -->
+            <div class="project">
+                <div class="project-number">1</div>
+                <h2>FlipScan-AI: Intelligent Document Digitization</h2>
+                <p class="project-subtitle">Computer Vision + Deep Learning | Binary Classification</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Enable automatic, hands-free document scanning for blind users and researchers. The system detects page flips from mobile camera previews, captures high-resolution images, performs corner detection, corrects perspective distortion (dewarping), enhances contrast, and executes OCR with ML-powered text refinement—all seamlessly integrated into a mobile application.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Binary Classification (Flip vs. No Flip)</p>
+                        <ul>
+                            <li><strong>Data Collection:</strong> Smartphone page-flipping videos, labeled positive/negative</li>
+                            <li><strong>Data Preprocessing:</strong> Frame extraction with sequential naming (VideoID_FrameNumber)</li>
+                            <li><strong>Augmentation:</strong> Rotation (20°), brightness variations, zoom, horizontal flip</li>
+                        </ul>
+
+                        <p class="sub-title">Models & Architectures:</p>
+                        <ul>
+                            <li><strong>Custom CNN:</strong> Baseline model from scratch</li>
+                            <li><strong>Transfer Learning:</strong> VGG16, ResNet50, MobileNet V1 with ImageNet weights</li>
+                            <li><strong>Fine-tuning:</strong> Unfroze top layers after initial training</li>
+                        </ul>
+
+                        <p class="sub-title">Computer Vision Pipeline:</p>
+                        <ul>
+                            <li>Corner Detection: Automated document edge identification</li>
+                            <li>Dewarping: Perspective correction to bird's-eye view</li>
+                            <li>Image Enhancement: Contrast sharpening for OCR optimization</li>
+                            <li>OCR Integration: Text extraction with formatting preservation</li>
+                        </ul>
+
+                        <p class="sub-title">Optimization & Deployment:</p>
+                        <ul>
+                            <li>Quantization: Model reduced to 45 MB for mobile</li>
+                            <li>TensorFlow Lite conversion for on-device inference</li>
+                            <li>Gradio web interface for demos</li>
+                        </ul>
+
+                        <p class="sub-title">Performance Metrics:</p>
+                        <ul>
+                            <li>F1-Score: 0.99 | Accuracy: 99% | Precision/Recall balanced</li>
+                            <li>Latency: Optimized for real-time mobile inference</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># Transfer Learning with Fine-tuning</div>
+                        <pre class="code-block"><code>from tensorflow.keras.applications import VGG16
+from tensorflow.keras import layers, models
+
+# Load pre-trained VGG16
+base_model = VGG16(weights='imagenet', include_top=False,
+                   input_shape=(224, 224, 3))
+base_model.trainable = False
+
+# Add custom classification head
+model = models.Sequential([
+    base_model,
+    layers.GlobalAveragePooling2D(),
+    layers.Dense(256, activation='relu'),
+    layers.Dropout(0.5),
+    layers.Dense(1, activation='sigmoid')
+])
+
+# Fine-tune: unfreeze top layers
+base_model.trainable = True
+for layer in base_model.layers[:-4]:
+    layer.trainable = False
+
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])</code></pre>
+
+                        <div class="code-label"># Data Augmentation Pipeline</div>
+                        <pre class="code-block"><code>from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+augment = ImageDataGenerator(
+    rotation_range=20,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    brightness_range=[0.8, 1.2],
+    zoom_range=0.2,
+    horizontal_flip=True
+)
+
+train_generator = augment.flow_from_directory(
+    'path/to/train',
+    target_size=(224, 224),
+    batch_size=32
+)</code></pre>
+
+                        <div class="code-label"># Model Evaluation</div>
+                        <pre class="code-block"><code>from sklearn.metrics import f1_score, classification_report
+
+y_pred = (model.predict(X_test) > 0.5).astype(int)
+
+# F1-Score = 0.99
+f1 = f1_score(y_test, y_pred)
+print(classification_report(y_test, y_pred,
+                           target_names=['No Flip', 'Flip']))</code></pre>
+
+                        <div class="code-label"># TensorFlow Lite Conversion</div>
+                        <pre class="code-block"><code>import tensorflow as tf
+
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+tflite_model = converter.convert()
+
+with open('model.tflite', 'wb') as f:
+    f.write(tflite_model)
+# Result: 45 MB optimized model</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">0.99</div>
+                        <div class="metric-label">F1-Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">45 MB</div>
+                        <div class="metric-label">Model Size</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">Architectures</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">CNN</span>
+                    <span class="tech-tag">Transfer Learning</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">TFLite</span>
+                    <span class="tech-tag">Gradio</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- PROJECT 2: Talents-Insight-Tool -->
+            <div class="project">
+                <div class="project-number">2</div>
+                <h2>Talents-Insight-Tool: Semantic Candidate Ranking</h2>
+                <p class="project-subtitle">NLP + Word Embeddings | Learning to Rank</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Automate talent sourcing by matching candidate job titles with target role keywords using semantic similarity. Rank candidates intelligently and enable dynamic re-ranking based on supervisor feedback. Transform manual talent acquisition into a scalable ML pipeline.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Semantic Similarity Matching + Learning to Rank</p>
+                        <p class="highlight-box"><strong>Input:</strong> Candidate ID, Job Title (text), Location, Connections | <strong>Output:</strong> Fit Score (0-1)</p>
+
+                        <p class="sub-title">Word Embedding Models Tested:</p>
+                        <ul>
+                            <li><strong>FastText:</strong> Subword embeddings (300D), handles OOV words</li>
+                            <li><strong>Word2Vec (Skip-gram):</strong> Context-based representations (300D, window=5)</li>
+                            <li><strong>TF-IDF:</strong> Statistical sparse vectors, term frequency weighting</li>
+                            <li><strong>GloVe:</strong> Global statistics + local context (300D)</li>
+                            <li><strong>BERT (Best):</strong> Bidirectional transformers (768D), exceptional ranking</li>
+                        </ul>
+
+                        <p class="sub-title">Text Processing & Feature Engineering:</p>
+                        <ul>
+                            <li>NLTK tokenization and normalization</li>
+                            <li>Stopword removal and stemming</li>
+                            <li>Cosine similarity: sim(u,v) = (u·v) / (||u|| × ||v||)</li>
+                        </ul>
+
+                        <p class="sub-title">Learning to Rank Strategy:</p>
+                        <ul>
+                            <li>Initial ranking: Semantic similarity to role keywords</li>
+                            <li>Dynamic re-ranking: Triggered by supervisor feedback ("starring")</li>
+                            <li>Weighted combination: 60% original score + 40% similarity to ideal candidate</li>
+                        </ul>
+
+                        <p class="sub-title">Evaluation Metrics:</p>
+                        <ul>
+                            <li>NDCG@10 (Normalized Discounted Cumulative Gain)</li>
+                            <li>MRR (Mean Reciprocal Rank) for top-1 accuracy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># BERT Embeddings & Ranking</div>
+                        <pre class="code-block"><code>from transformers import BertTokenizer, BertModel
+from sklearn.metrics.pairwise import cosine_similarity
+import torch
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+
+def get_embedding(text):
+    tokens = tokenizer.encode(text, add_special_tokens=True)
+    input_ids = torch.tensor([tokens])
+    with torch.no_grad():
+        outputs = model(input_ids)
+    return outputs[1].numpy()  # [CLS] token
+
+# Rank candidates against role keywords
+role_emb = get_embedding("Aspiring human resources")
+scores = {}
+for idx, title in candidates.items():
+    cand_emb = get_embedding(title)
+    scores[idx] = cosine_similarity(role_emb, cand_emb)[0][0]
+
+ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)</code></pre>
+
+                        <div class="code-label"># Multi-Embedding Comparison</div>
+                        <pre class="code-block"><code>from gensim.models import Word2Vec, FastText
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Train embedding models
+w2v = Word2Vec(sentences=job_titles, vector_size=300, window=5, sg=1)
+ft = FastText(sentences=job_titles, vector_size=300, window=5)
+tfidf = TfidfVectorizer(max_features=300).fit_transform(job_titles)
+
+def compare_models(job_title, role_keyword):
+    w2v_sim = cosine_similarity(w2v[job_title], w2v[role_keyword])
+    ft_sim = cosine_similarity(ft[job_title], ft[role_keyword])
+    return {'Word2Vec': w2v_sim, 'FastText': ft_sim}</code></pre>
+
+                        <div class="code-label"># Dynamic Re-ranking with Feedback</div>
+                        <pre class="code-block"><code>def rerank_with_feedback(scores, ideal_idx):
+    # Get ideal candidate embedding
+    ideal_emb = embeddings[ideal_idx]
+    new_scores = {}
+
+    for idx, emb in embeddings.items():
+        sim_to_ideal = cosine_similarity(ideal_emb, emb)
+        # Weighted: 60% original, 40% similarity to ideal
+        combined = 0.6 * scores[idx] + 0.4 * sim_to_ideal
+        new_scores[idx] = combined
+
+    return sorted(new_scores.items(), key=lambda x: x[1], reverse=True)</code></pre>
+
+                        <div class="code-label"># NDCG & MRR Ranking Metrics</div>
+                        <pre class="code-block"><code>def calculate_ndcg(true_rel, pred_scores, k=10):
+    # Ideal DCG: sort by true relevance
+    ideal_dcg = sum((2**rel - 1) / np.log2(i + 2)
+                    for i, rel in
+                    enumerate(sorted(true_rel, reverse=True)[:k]))
+
+    # Actual DCG: based on predictions
+    pred_rank = np.argsort(-pred_scores)[:k]
+    actual_dcg = sum((2**true_rel[i] - 1) / np.log2(j + 2)
+                     for j, i in enumerate(pred_rank))
+
+    return actual_dcg / ideal_dcg if ideal_dcg > 0 else 0</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">BERT</div>
+                        <div class="metric-label">Best Model</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">Methods Tested</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">768</div>
+                        <div class="metric-label">Embedding Dim</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">BERT</span>
+                    <span class="tech-tag">Word2Vec</span>
+                    <span class="tech-tag">FastText</span>
+                    <span class="tech-tag">TF-IDF</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Transformers</span>
+                    <span class="tech-tag">NLTK</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- PROJECT 3: Call-Success-ML-Advisor -->
+            <div class="project">
+                <div class="project-number">3</div>
+                <h2>Call-Success-ML-Advisor: Banking Campaign Prediction</h2>
+                <p class="project-subtitle">Classification + Ensemble Methods | Financial Services</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Predict whether customers will subscribe to term deposits in European banking campaigns. Maximize targeting efficiency of high-probability prospects to improve ROI while maintaining interpretability for business stakeholders.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Binary Classification (Subscribe vs. Non-Subscribe)</p>
+                        <p class="highlight-box"><strong>Dataset:</strong> Direct marketing campaign from European bank | <strong>Target:</strong> Term deposit subscription (Y/N)</p>
+
+                        <p class="sub-title">Features (13 input features):</p>
+                        <ul>
+                            <li><strong>Demographic:</strong> Age, Job type, Marital status, Education level</li>
+                            <li><strong>Financial:</strong> Account balance, Credit default, Housing loan, Personal loan</li>
+                            <li><strong>Contact:</strong> Communication type, Last contact duration (seconds)</li>
+                            <li><strong>Campaign:</strong> Day of month, Month, Campaign contact count</li>
+                        </ul>
+
+                        <p class="sub-title">Data Preprocessing & Class Balancing:</p>
+                        <ul>
+                            <li>SMOTE (Synthetic Minority Over-sampling) for class imbalance handling</li>
+                            <li>Mode imputation for missing values</li>
+                            <li>Categorical encoding: Label/One-Hot encoding</li>
+                            <li>Feature scaling: StandardScaler for distance-based models</li>
+                        </ul>
+
+                        <p class="sub-title">Models Implemented & Compared:</p>
+                        <ul>
+                            <li><strong>XGBoost (Best):</strong> Gradient boosting - 96% accuracy, 0.96 F1-score</li>
+                            <li><strong>Random Forest:</strong> Ensemble decision trees with feature importance</li>
+                            <li><strong>Support Vector Machine (SVM):</strong> Non-linear RBF kernel classification</li>
+                            <li><strong>K-Nearest Neighbors:</strong> Instance-based learning with k-optimization</li>
+                        </ul>
+
+                        <p class="sub-title">Hyperparameter Tuning:</p>
+                        <ul>
+                            <li>Grid Search with 5-fold cross-validation</li>
+                            <li>Exhaustive parameter space exploration</li>
+                            <li>Optimal performance selection</li>
+                        </ul>
+
+                        <p class="sub-title">Evaluation Metrics:</p>
+                        <ul>
+                            <li>Accuracy: 96% | F1-Score: 0.96 | ROC-AUC, Precision, Recall</li>
+                            <li>Confusion Matrix analysis for false positives/negatives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># SMOTE & Data Preprocessing</div>
+                        <pre class="code-block"><code>from imblearn.over_sampling import SMOTE
+from sklearn.preprocessing import StandardScaler
+
+# Handle class imbalance
+smote = SMOTE(random_state=42)
+X_balanced, y_balanced = smote.fit_resample(X_train, y_train)
+
+# Handle missing values with mode
+X_train.fillna(X_train.mode()[0], inplace=True)
+
+# Feature scaling
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X_train)</code></pre>
+
+                        <div class="code-label"># Ensemble Model Comparison</div>
+                        <pre class="code-block"><code>from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score, f1_score
+
+models = {
+    'XGBoost': XGBClassifier(n_estimators=100, max_depth=6),
+    'Random Forest': RandomForestClassifier(n_estimators=100),
+    'SVM': SVC(kernel='rbf', probability=True),
+}
+
+for name, model in models.items():
+    model.fit(X_balanced, y_balanced)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    print(f"{name}: Acc={accuracy:.2%}, F1={f1:.4f}")</code></pre>
+
+                        <div class="code-label"># Grid Search Hyperparameter Tuning</div>
+                        <pre class="code-block"><code>param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [3, 6, 9],
+    'learning_rate': [0.01, 0.1, 0.3],
+}
+
+grid_search = GridSearchCV(XGBClassifier(), param_grid, cv=5)
+grid_search.fit(X_balanced, y_balanced)
+
+print(f"Best params: {grid_search.best_params_}")
+print(f"Best CV score: {grid_search.best_score_:.4f}")</code></pre>
+
+                        <div class="code-label"># Model Evaluation Metrics</div>
+                        <pre class="code-block"><code>from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+
+best_model = grid_search.best_estimator_
+y_pred = best_model.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+roc_auc = roc_auc_score(y_test, y_pred)
+
+print(f"Accuracy: {accuracy:.2%}")
+print(f"F1-Score: {f1:.4f}")
+print(f"ROC-AUC: {roc_auc:.4f}")</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">96%</div>
+                        <div class="metric-label">Accuracy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0.96</div>
+                        <div class="metric-label">F1-Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">4</div>
+                        <div class="metric-label">Models</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">XGBoost</span>
+                    <span class="tech-tag">Random Forest</span>
+                    <span class="tech-tag">SVM</span>
+                    <span class="tech-tag">SMOTE</span>
+                    <span class="tech-tag">Grid Search</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- PROJECT 4: Stock-Forecaster -->
+            <div class="project">
+                <div class="project-number">4</div>
+                <h2>Stock-Forecaster: Value Investing Decision Support</h2>
+                <p class="project-subtitle">Time Series Forecasting + Technical Analysis | Finance</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Build an intelligent stock valuation system for emerging markets using value investing principles. Predict stock prices on daily, weekly, and monthly timeframes, generate actionable BUY/HOLD/SELL recommendations, and maximize capital returns while minimizing losses through data-driven portfolio decisions.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Time Series Forecasting + Trading Signals</p>
+                        <p class="highlight-box"><strong>Data:</strong> Emerging market stocks (2020 Q1-Q4) | <strong>Prediction:</strong> 2021 Q1 valuations</p>
+
+                        <p class="sub-title">Time Series Features:</p>
+                        <ul>
+                            <li><strong>OHLC Data:</strong> Open, High, Low, Close prices per trading day</li>
+                            <li><strong>Volume Metrics:</strong> Trading volume as confirmatory signal</li>
+                            <li><strong>Multi-timeframe:</strong> Daily, weekly, monthly aggregations</li>
+                        </ul>
+
+                        <p class="sub-title">Technical Indicators & Analysis:</p>
+                        <ul>
+                            <li><strong>Bollinger Bands:</strong> Volatility measurement, overbought/oversold detection</li>
+                            <li><strong>Moving Averages:</strong> Trend identification (SMA, EMA)</li>
+                            <li><strong>RSI (Relative Strength Index):</strong> Momentum oscillator</li>
+                            <li><strong>MACD:</strong> Trend and momentum convergence/divergence</li>
+                        </ul>
+
+                        <p class="sub-title">Forecasting Methodologies:</p>
+                        <ul>
+                            <li>Time series decomposition (trend, seasonality, residuals)</li>
+                            <li>ARIMA/SARIMA models for univariate forecasting</li>
+                            <li>Machine learning regressors (Linear Regression, Random Forest, XGBoost)</li>
+                        </ul>
+
+                        <p class="sub-title">Trading Signal Generation:</p>
+                        <ul>
+                            <li><strong>BUY Signal:</strong> Price crosses above lower Bollinger Band, RSI oversold</li>
+                            <li><strong>SELL Signal:</strong> Price crosses below upper Bollinger Band, RSI overbought</li>
+                            <li><strong>HOLD Signal:</strong> Price within bands, no clear trend</li>
+                        </ul>
+
+                        <p class="sub-title">Performance Evaluation:</p>
+                        <ul>
+                            <li>Capital Returns: Net profit percentage on invested capital</li>
+                            <li>Loss Minimization: Stop-loss mechanisms, risk management</li>
+                            <li>Bollinger Bands effectiveness: Backtesting signal accuracy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># Load & Prepare Time Series Data</div>
+                        <pre class="code-block"><code>import pandas as pd
+import numpy as np
+
+# Load stock data by company
+stocks = pd.read_excel('stocks.xlsx', sheet_name=None)
+
+for company, data in stocks.items():
+    data['Date'] = pd.to_datetime(data['Date'])
+    data = data.sort_values('Date')
+    data.set_index('Date', inplace=True)
+    
+    # Aggregate to weekly/monthly
+    weekly = data['Close'].resample('W').last()
+    monthly = data['Close'].resample('M').last()</code></pre>
+
+                        <div class="code-label"># Bollinger Bands & Technical Indicators</div>
+                        <pre class="code-block"><code>def calculate_bollinger_bands(prices, window=20, std_dev=2):
+    sma = prices.rolling(window=window).mean()
+    std = prices.rolling(window=window).std()
+    
+    upper_band = sma + (std * std_dev)
+    lower_band = sma - (std * std_dev)
+    
+    return upper_band, sma, lower_band
+
+# Calculate RSI
+def calculate_rsi(prices, period=14):
+    delta = prices.diff()
+    gain = (delta.where(delta > 0, 0)).rolling(window=period).mean()
+    loss = (-delta.where(delta < 0, 0)).rolling(window=period).mean()
+    
+    rs = gain / loss
+    rsi = 100 - (100 / (1 + rs))
+    
+    return rsi</code></pre>
+
+                        <div class="code-label"># Generate Trading Signals</div>
+                        <pre class="code-block"><code>def generate_signals(data):
+    upper, middle, lower = calculate_bollinger_bands(data['Close'])
+    rsi = calculate_rsi(data['Close'])
+    
+    signals = []
+    for i in range(1, len(data)):
+        price = data['Close'].iloc[i]
+        
+        if price < lower.iloc[i] and rsi.iloc[i] < 30:
+            signals.append('BUY')
+        elif price > upper.iloc[i] and rsi.iloc[i] > 70:
+            signals.append('SELL')
+        else:
+            signals.append('HOLD')
+    
+    return signals</code></pre>
+
+                        <div class="code-label"># Backtest Trading Strategy</div>
+                        <pre class="code-block"><code>def backtest_strategy(data, signals):
+    capital = 10000
+    position = False
+    entry_price = 0
+    returns = []
+    
+    for i, signal in enumerate(signals):
+        price = data['Close'].iloc[i]
+        
+        if signal == 'BUY' and not position:
+            position = True
+            entry_price = price
+        elif signal == 'SELL' and position:
+            capital *= (1 + (price - entry_price) / entry_price)
+            position = False
+            returns.append(capital)
+
+    return capital, returns</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">Timeframes</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Daily/Weekly/Monthly</div>
+                        <div class="metric-label">Predictions</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Capital Returns</div>
+                        <div class="metric-label">Metric</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Time Series</span>
+                    <span class="tech-tag">ARIMA</span>
+                    <span class="tech-tag">Bollinger Bands</span>
+                    <span class="tech-tag">Technical Analysis</span>
+                    <span class="tech-tag">Backtesting</span>
+                    <span class="tech-tag">Pandas</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- PROJECT 5: Happiness-Insight -->
+            <div class="project">
+                <div class="project-number">5</div>
+                <h2>Happiness-Insight: Customer Satisfaction Prediction</h2>
+                <p class="project-subtitle">Classification + Customer Analytics | Logistics & Delivery</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Predict customer satisfaction in logistics and on-demand delivery services. Analyze survey responses across six satisfaction dimensions (delivery, product quality, price, courier, app usability) to identify unhappy customers early and recommend operational improvements for global expansion.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Binary Classification (Happy vs. Unhappy Customers)</p>
+                        <p class="highlight-box"><strong>Dataset:</strong> Customer survey responses | <strong>Target:</strong> Customer happiness (0=Unhappy, 1=Happy)</p>
+
+                        <p class="sub-title">Survey Dimensions (6 Likert Scale Features 1-5):</p>
+                        <ul>
+                            <li><strong>X1:</strong> Order delivered on time</li>
+                            <li><strong>X2:</strong> Contents of order as expected</li>
+                            <li><strong>X3:</strong> Ordered everything wanted to order</li>
+                            <li><strong>X4:</strong> Paid good price for order</li>
+                            <li><strong>X5:</strong> Satisfied with courier</li>
+                            <li><strong>X6:</strong> App makes ordering easy</li>
+                        </ul>
+
+                        <p class="sub-title">Models Implemented & Compared:</p>
+                        <ul>
+                            <li><strong>Support Vector Machine (Best):</strong> 78% accuracy, 0.8 F1-score</li>
+                            <li><strong>Decision Tree:</strong> Interpretable feature importance ranking</li>
+                            <li><strong>Random Forest:</strong> Ensemble approach with feature interactions</li>
+                            <li><strong>Logistic Regression:</strong> Baseline linear model</li>
+                            <li><strong>K-Nearest Neighbors:</strong> Instance-based classification</li>
+                        </ul>
+
+                        <p class="sub-title">Data Analysis & Feature Engineering:</p>
+                        <ul>
+                            <li>Exploratory Data Analysis on survey distribution</li>
+                            <li>Correlation analysis between satisfaction dimensions</li>
+                            <li>Feature scaling: StandardScaler for SVM optimization</li>
+                            <li>Class distribution analysis and potential balancing</li>
+                        </ul>
+
+                        <p class="sub-title">Hyperparameter Optimization:</p>
+                        <ul>
+                            <li>Grid Search with 5-fold cross-validation</li>
+                            <li>F1-score maximization as primary objective</li>
+                            <li>SVM kernel tuning (RBF, polynomial, linear)</li>
+                        </ul>
+
+                        <p class="sub-title">Evaluation Metrics:</p>
+                        <ul>
+                            <li>Accuracy: 78% | F1-Score: 0.8 | Precision, Recall, ROC-AUC</li>
+                            <li>Feature importance analysis for business insights</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># Exploratory Data Analysis</div>
+                        <pre class="code-block"><code>import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load survey data
+df = pd.read_csv('survey_data.csv')
+
+# Analyze target distribution
+print(df['Y'].value_counts())
+print(f"Happiness Rate: {(df['Y'].sum() / len(df)):.2%}")
+
+# Correlation analysis
+corr = df.corr()
+sns.heatmap(corr, annot=True, cmap='coolwarm')
+plt.show()</code></pre>
+
+                        <div class="code-label"># Model Comparison Pipeline</div>
+                        <pre class="code-block"><code>from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import f1_score
+
+models = {
+    'SVM': SVC(kernel='rbf', C=1.0),
+    'Decision Tree': DecisionTreeClassifier(),
+    'Random Forest': RandomForestClassifier(n_estimators=100),
+    'Logistic Regression': LogisticRegression(),
+    'KNN': KNeighborsClassifier(n_neighbors=5),
+}
+
+results = {}
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    f1 = f1_score(y_test, y_pred)
+    results[name] = f1</code></pre>
+
+                        <div class="code-label"># SVM Grid Search Optimization</div>
+                        <pre class="code-block"><code>from sklearn.model_selection import GridSearchCV
+
+param_grid = {
+    'C': [0.1, 1, 10],
+    'kernel': ['linear', 'rbf', 'poly'],
+    'gamma': ['scale', 'auto'],
+}
+
+svm = SVC()
+grid = GridSearchCV(svm, param_grid, cv=5, scoring='f1')
+grid.fit(X_train, y_train)
+
+print(f"Best params: {grid.best_params_}")
+print(f"Best F1-Score: {grid.best_score_:.4f}")</code></pre>
+
+                        <div class="code-label"># Feature Importance Analysis</div>
+                        <pre class="code-block"><code>import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
+# Random Forest feature importance
+rf_model = RandomForestClassifier(n_estimators=100).fit(X_train, y_train)
+importance = rf_model.feature_importances_
+
+feature_df = pd.DataFrame({
+    'Feature': ['On-time', 'Content', 'Selection', 
+                'Price', 'Courier', 'App'],
+    'Importance': importance
+}).sort_values('Importance', ascending=False)
+
+print(feature_df)</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">78%</div>
+                        <div class="metric-label">Accuracy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0.8</div>
+                        <div class="metric-label">F1-Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">Models</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">SVM</span>
+                    <span class="tech-tag">Random Forest</span>
+                    <span class="tech-tag">Grid Search</span>
+                    <span class="tech-tag">Feature Importance</span>
+                    <span class="tech-tag">EDA</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- PROJECT 6: Crypto-Trading-Bot -->
+            <div class="project">
+                <div class="project-number">6</div>
+                <h2>Crypto-Trading-Bot: Wave Trend Momentum Strategy</h2>
+                <p class="project-subtitle">Algorithmic Trading + Risk Management | Cryptocurrency</p>
+
+                <div class="section">
+                    <div class="section-title">Project Goal</div>
+                    <div class="section-content">
+                        <p class="content-text">Develop an automated cryptocurrency trading bot implementing Wave Trend momentum strategy with intelligent risk management. Execute trades on multiple pairs (BTC, ETH, ADA, XRP, SOL) using multi-indicator confirmation, dynamic trailing stop-losses, and strict position time limits. Support both paper-trading simulation and live market execution on Binance.</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Data Science & ML Techniques</div>
+                    <div class="section-content">
+                        <p class="sub-title">Problem: Real-time Signal Generation + Risk Management</p>
+                        <p class="highlight-box"><strong>Timeframe:</strong> 15-minute candles | <strong>Strategy:</strong> Momentum scalping with trend filters</p>
+
+                        <p class="sub-title">Technical Indicators Used:</p>
+                        <ul>
+                            <li><strong>Wave Trend Oscillator (9,12):</strong> Primary signal generator, crossover detection</li>
+                            <li><strong>On-Balance Volume (OBV):</strong> Volume confirmation of price moves</li>
+                            <li><strong>Average True Range (ATR):</strong> Dynamic volatility-based stop-loss calculation</li>
+                            <li><strong>Stochastic Oscillator:</strong> Momentum and overbought/oversold conditions</li>
+                            <li><strong>RSI, EMA, MFI:</strong> Additional confirmatory signals</li>
+                        </ul>
+
+                        <p class="sub-title">Entry Signals (Multi-indicator Confirmation):</p>
+                        <ul>
+                            <li>Wave Trend Oscillator: WT1 crosses above WT2</li>
+                            <li>Oversold condition: WT2 ≤ -20</li>
+                            <li>Volume confirmation: On-Balance Volume increasing</li>
+                            <li>BTC sentiment filter: 24h BTC change > threshold (avoid bear markets)</li>
+                        </ul>
+
+                        <p class="sub-title">Exit Strategy & Risk Management:</p>
+                        <ul>
+                            <li><strong>Initial Stop-Loss:</strong> Entry price - (2 × ATR)</li>
+                            <li><strong>Trailing Stop:</strong> 0.3% adjustable distance from peak</li>
+                            <li><strong>Maximum Position Time:</strong> 4 hours (scalping focus)</li>
+                            <li><strong>Position Sizing:</strong> Full balance per trade (configurable)</li>
+                        </ul>
+
+                        <p class="sub-title">Trading Configuration:</p>
+                        <ul>
+                            <li><strong>Paper Trading Mode:</strong> Risk-free backtesting with virtual balance</li>
+                            <li><strong>Live Trading Mode:</strong> Real Binance API execution with market orders</li>
+                            <li><strong>Entry Orders:</strong> Limit orders at signal price</li>
+                            <li><strong>Exit Orders:</strong> Market orders for immediate execution</li>
+                        </ul>
+
+                        <p class="sub-title">Trade Logging & Analytics:</p>
+                        <ul>
+                            <li>Complete CSV trade records with timestamps, prices, signals</li>
+                            <li>P&L calculations and performance tracking</li>
+                            <li>Signal type logging for strategy backtesting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Key Technical Highlights</div>
+                    <div class="section-content">
+                        <div class="code-label"># Bot Configuration & Setup</div>
+                        <pre class="code-block"><code>import ccxt
+from binance.client import Client
+import datetime
+from datetime import timedelta
+import pandas as pd
+import numpy as np
+
+# --- Bot Settings ---
+paper_trading = True
+balance_usdt = 1000
+trail = 0.003
+profit = 0.005
+max_hold_time = timedelta(hours=4)
+btc_24change_threshold = -5
+
+# --- API Configuration ---
+api_key = "your_binance_api_key"
+api_secret = "your_binance_secret"
+client = Client(api_key, api_secret)
+
+# --- Trading Pairs ---
+pairs_list = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'XRPUSDT', 'SOLUSDT']</code></pre>
+
+                        <div class="code-label"># Wave Trend Signal Generation</div>
+                        <pre class="code-block"><code>def wave_trend(hlc3, period1=9, period2=12):
+    esa = ta.EMA(hlc3, period1)
+    de = ta.EMA(abs(hlc3 - esa), period1)
+    wt1 = ta.EMA((hlc3 - esa) / (0.015 * de), period2)
+    wt2 = ta.SMA(wt1, 3)
+    return wt1, wt2
+
+def get_signal(symbol):
+    klines = client.get_klines(symbol=symbol, interval=Client.KLINE_INTERVAL_15MINUTE, limit=200)
+    closes = np.array([float(x[4]) for x in klines])
+    highs = np.array([float(x[2]) for x in klines])
+    lows = np.array([float(x[3]) for x in klines])
+    
+    hlc3 = (highs + lows + closes) / 3
+    wt1, wt2 = wave_trend(hlc3)
+    
+    if wt1[-1] > wt2[-1] and wt2[-1] <= -20:
+        return 'BUY'
+    elif wt1[-1] < wt2[-1] and wt2[-1] >= 20:
+        return 'SELL'
+    else:
+        return 'HOLD'</code></pre>
+
+                        <div class="code-label"># ATR-Based Stop Loss Calculation</div>
+                        <pre class="code-block"><code>def calculate_atr(symbol, period=14):
+    klines = client.get_klines(symbol=symbol, interval=Client.KLINE_INTERVAL_15MINUTE, limit=period)
+    highs = np.array([float(x[2]) for x in klines])
+    lows = np.array([float(x[3]) for x in klines])
+    closes = np.array([float(x[4]) for x in klines])
+    
+    tr = np.maximum(highs - lows, np.maximum(abs(highs - closes[:-1]), abs(lows - closes[:-1])))
+    atr = np.mean(tr)
+    return atr
+
+def set_stop_loss(entry_price, symbol):
+    atr = calculate_atr(symbol)
+    stop_loss = entry_price - (2 * atr)
+    trailing_stop = entry_price * (1 - trail)
+    return max(stop_loss, trailing_stop)</code></pre>
+
+                        <div class="code-label"># Trade Execution & Logging</div>
+                        <pre class="code-block"><code>def execute_trade(symbol, signal, entry_price):
+    if paper_trading:
+        quantity = balance_usdt / entry_price
+        stop_loss = set_stop_loss(entry_price, symbol)
+        
+        trade_record = {
+            'Time': datetime.datetime.now(),
+            'Signal': signal,
+            'Asset': symbol,
+            'Amount': quantity,
+            'Price': entry_price,
+            'Stop Loss': stop_loss,
+            'ATR': calculate_atr(symbol),
+        }
+        return trade_record
+    else:
+        order = client.order_limit_buy(symbol=symbol, quantity=quantity, price=entry_price)
+        return order
+
+def log_trades(trades_list, filename='trades_log.csv'):
+    trades_df = pd.DataFrame(trades_list)
+    trades_df.to_csv(filename, index=False)</code></pre>
+
+                        <div class="code-label"># BTC Sentiment Filter</div>
+                        <pre class="code-block"><code>def get_btc_sentiment():
+    btc_24h_change = float(client.get_ticker(symbol='BTCUSDT')['priceChangePercent'])
+    return btc_24h_change
+
+def should_trade():
+    btc_change = get_btc_sentiment()
+    if btc_change < btc_24change_threshold:
+        print(f"BTC down {btc_change}% - Market bearish, skipping trades")
+        return False
+    return True</code></pre>
+
+                        <div class="code-label"># Main Trading Loop</div>
+                        <pre class="code-block"><code>def trading_loop():
+    trades_log = []
+    active_positions = {}
+    
+    while True:
+        if not should_trade():
+            continue
+        
+        for symbol in pairs_list:
+            signal = get_signal(symbol)
+            current_price = float(client.get_symbol_info(symbol)['price'])
+            
+            if signal == 'BUY' and symbol not in active_positions:
+                trade = execute_trade(symbol, signal, current_price)
+                active_positions[symbol] = trade
+                trades_log.append(trade)
+            
+            elif signal == 'SELL' and symbol in active_positions:
+                position = active_positions.pop(symbol)
+                profit_pct = (current_price - position['Price']) / position['Price']
+                del active_positions[symbol]
+            
+            elif symbol in active_positions:
+                position = active_positions[symbol]
+                if current_price <= position['Stop Loss']:
+                    del active_positions[symbol]
+                elif datetime.datetime.now() - position['Time'] > max_hold_time:
+                    del active_positions[symbol]
+        
+        log_trades(trades_log)
+        time.sleep(60)
+
+if __name__ == '__main__':
+    trading_loop()</code></pre>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">Trading Pairs</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">15min</div>
+                        <div class="metric-label">Candle Size</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">4 hrs</div>
+                        <div class="metric-label">Max Hold Time</div>
+                    </div>
+                </div>
+
+                <div class="tech-stack">
+                    <span class="tech-tag">Binance API</span>
+                    <span class="tech-tag">Wave Trend</span>
+                    <span class="tech-tag">ATR</span>
+                    <span class="tech-tag">Technical Analysis</span>
+                    <span class="tech-tag">Risk Management</span>
+                    <span class="tech-tag">Real-time Trading</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Portfolio Summary:</strong> 6 production-grade ML & data science projects showcasing expertise in computer vision, NLP, financial forecasting, customer analytics, and algorithmic trading.</p>
+            <p>Each project demonstrates rigorous data engineering, advanced ML techniques, and deployment best practices.</p>
+        </footer>
+    </div>
+</body>
+</html>
