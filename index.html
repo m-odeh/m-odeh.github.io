@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mohammed Odeh - AI & Machine Learning Engineer with expertise in Computer Vision, NLP, and end-to-end ML solutions.">
+  <meta name="keywords" content="AI Engineer, Machine Learning, Computer Vision, NLP, Python, TensorFlow, PyTorch">
+  <meta name="author" content="Mohammed Odeh">
+  <title>Mohammed Odeh | AI & Machine Learning Engineer</title>
+  <link rel="canonical" href="https://m-odeh.github.io/">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --background: hsl(40, 33%, 98%);
+      --foreground: hsl(30, 10%, 15%);
+      --card: hsl(40, 30%, 99%);
+      --card-foreground: hsl(30, 10%, 15%);
+      --primary: hsl(16, 85%, 65%);
+      --primary-foreground: hsl(40, 33%, 98%);
+      --secondary: hsl(35, 40%, 92%);
+      --secondary-foreground: hsl(30, 10%, 25%);
+      --muted: hsl(35, 25%, 90%);
+      --muted-foreground: hsl(30, 10%, 45%);
+      --accent: hsl(200, 70%, 55%);
+      --accent-foreground: hsl(40, 33%, 98%);
+      --border: hsl(35, 20%, 88%);
+      --beige: hsl(35, 35%, 95%);
+      --cream: hsl(40, 40%, 97%);
+      --coral: hsl(16, 85%, 65%);
+      --coral-light: hsl(16, 85%, 75%);
+      --peach: hsl(25, 90%, 85%);
+      --warm-gray: hsl(30, 10%, 35%);
+      --gradient-hero: linear-gradient(135deg, hsl(40, 33%, 98%) 0%, hsl(35, 35%, 95%) 50%, hsl(25, 90%, 95%) 100%);
+      --gradient-card: linear-gradient(180deg, hsl(40, 30%, 99%) 0%, hsl(35, 35%, 97%) 100%);
+      --gradient-accent: linear-gradient(135deg, hsl(16, 85%, 65%) 0%, hsl(25, 85%, 60%) 100%);
+      --soft-shadow: 0 4px 20px -4px hsla(30, 20%, 20%, 0.1);
+      --card-shadow: 0 8px 30px -8px hsla(30, 20%, 20%, 0.12);
+      --hover-shadow: 0 12px 40px -10px hsla(30, 20%, 20%, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--background); color: var(--foreground); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .text-center { text-align: center; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .gap-8 { gap: 2rem; }
+    .flex-wrap { flex-wrap: wrap; }
+    .flex-1 { flex: 1; }
+    .grid { display: grid; }
+    .hidden { display: none; }
+
+    @media (min-width: 768px) {
+      .md\:flex { display: flex; }
+      .md\:hidden { display: none; }
+      .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: hsla(40, 30%, 99%, 0.9);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--soft-shadow);
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 5rem; }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--foreground); text-decoration: none; }
+    .nav-logo span { color: var(--primary); }
+    .nav-links { display: none; align-items: center; gap: 2rem; }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-link {
+      color: var(--muted-foreground); text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      position: relative; transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--foreground); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--primary); transition: width 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .mobile-menu-btn { display: block; padding: 0.5rem; background: none; border: none; cursor: pointer; color: var(--foreground); }
+    @media (min-width: 768px) { .mobile-menu-btn { display: none; } }
+    .mobile-menu {
+      display: none; padding-bottom: 1.5rem;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 0.5rem 0; color: var(--muted-foreground); text-decoration: none; transition: color 0.3s; }
+    .mobile-menu a:hover { color: var(--foreground); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 6rem 1.5rem 3rem; background: var(--gradient-hero);
+    }
+    .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; color: var(--foreground); margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { .hero h1 { font-size: 3.5rem; } }
+    .hero-subtitle { font-size: 1.125rem; color: var(--muted-foreground); max-width: 40rem; margin-bottom: 2.5rem; }
+    @media (min-width: 768px) { .hero-subtitle { font-size: 1.25rem; } }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.875rem 1.75rem; border-radius: 9999px; font-weight: 600;
+      color: var(--primary-foreground); background: var(--gradient-accent);
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 15px -3px hsla(16, 85%, 65%, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px -5px hsla(16, 85%, 65%, 0.5);
+    }
+
+    /* Hero Animation */
+    .hero-animation {
+      position: relative; width: 16rem; height: 16rem; margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) { .hero-animation { width: 20rem; height: 20rem; } }
+    .orb-center {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 5rem; height: 5rem; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--coral));
+    }
+    .orb-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 6rem; height: 6rem; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--coral));
+      opacity: 0.6; filter: blur(8px);
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .orbit-ring {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      border-radius: 50%; border: 2px dashed hsla(16, 85%, 65%, 0.2);
+    }
+    .orbit-ring-1 { width: 14rem; height: 14rem; animation: spin 20s linear infinite; }
+    .orbit-ring-2 { width: 11rem; height: 11rem; border-style: solid; border-color: hsla(200, 70%, 55%, 0.3); animation: spin 15s linear infinite reverse; }
+    .orbit-node {
+      position: absolute; top: 50%; left: 50%; width: 1rem; height: 1rem; border-radius: 50%;
+      animation: orbit 8s linear infinite;
+    }
+    .orbit-node-reverse {
+      position: absolute; top: 50%; left: 50%; width: 0.75rem; height: 0.75rem; border-radius: 50%;
+      animation: orbit-reverse 6s linear infinite;
+    }
+    .node-1 { background: var(--accent); animation-delay: 0s; }
+    .node-2 { background: hsla(16, 85%, 65%, 0.8); animation-delay: 2s; }
+    .node-3 { background: var(--peach); animation-delay: 4s; }
+    .node-4 { background: hsla(200, 70%, 55%, 0.7); animation-delay: 1s; }
+    .node-5 { background: hsla(16, 85%, 65%, 0.6); animation-delay: 3s; }
+    .particle {
+      position: absolute; border-radius: 50%; animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+    @keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(5rem) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(5rem) rotate(-360deg); }
+    }
+    @keyframes orbit-reverse {
+      from { transform: rotate(360deg) translateX(3.75rem) rotate(-360deg); }
+      to { transform: rotate(0deg) translateX(3.75rem) rotate(0deg); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-1.25rem); }
+    }
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fade-in-up 0.6s ease-out forwards; }
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+
+    /* Sections */
+    section { padding: 5rem 1.5rem; }
+    @media (min-width: 768px) { section { padding: 7rem 1.5rem; } }
+    .section-card { background: var(--card); }
+    .section-bg { background: var(--background); }
+    .section-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
+    .section-header.center { justify-content: center; }
+    .section-icon { padding: 0.75rem; border-radius: 0.75rem; background: hsla(16, 85%, 65%, 0.1); }
+    .section-icon svg { color: var(--primary); }
+    .section-title { font-size: 1.875rem; font-weight: 700; color: var(--foreground); margin: 0; }
+    @media (min-width: 768px) { .section-title { font-size: 2.25rem; } }
+    .max-w-4xl { max-width: 56rem; margin: 0 auto; }
+    .max-w-5xl { max-width: 64rem; margin: 0 auto; }
+    .max-w-3xl { max-width: 48rem; margin: 0 auto; }
+
+    /* Cards */
+    .card {
+      border-radius: 1rem; padding: 1.5rem; background: var(--background);
+      box-shadow: var(--card-shadow); transition: all 0.3s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); }
+    .card-highlight {
+      background: linear-gradient(135deg, hsla(16, 85%, 65%, 0.1) 0%, hsla(25, 90%, 85%, 0.3) 100%);
+      border: 2px solid hsla(16, 85%, 65%, 0.2);
+    }
+    .card-bg-card { background: var(--card); }
+    @media (min-width: 768px) { .card { padding: 2rem; } }
+
+    /* About */
+    .about-text { font-size: 1.125rem; line-height: 1.8; color: var(--muted-foreground); }
+    @media (min-width: 768px) { .about-text { font-size: 1.25rem; } }
+    .about-text .highlight { color: var(--foreground); font-weight: 600; }
+
+    /* Achievements */
+    .achievement-icon { padding: 0.75rem; border-radius: 0.75rem; }
+    .achievement-icon.highlight { background: hsla(16, 85%, 65%, 0.2); }
+    .achievement-icon.default { background: var(--secondary); }
+    .achievement-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.5rem; }
+    .achievement-desc { color: var(--muted-foreground); }
+    .medals { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+    .medals-label { font-size: 0.875rem; color: var(--muted-foreground); font-weight: 500; }
+    .medal { display: flex; align-items: center; gap: 0.25rem; }
+    .medal-dot { width: 1rem; height: 1rem; border-radius: 50%; }
+    .medal-gold { background: #facc15; }
+    .medal-silver { background: #9ca3af; }
+
+    /* Certificates */
+    .cert-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.5rem; transition: color 0.3s; }
+    .card:hover .cert-title { color: var(--primary); }
+    .cert-issuer { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+    .cert-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--primary); text-decoration: none; transition: color 0.3s; }
+    .cert-link:hover { color: var(--coral-light); }
+
+    /* Skills */
+    .skill-category-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--foreground); margin-bottom: 1rem; }
+    .skill-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-badge {
+      padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500;
+      background: var(--gradient-card); box-shadow: var(--soft-shadow);
+      transition: all 0.3s;
+    }
+    .skill-badge:hover { transform: translateY(-2px); box-shadow: var(--card-shadow); }
+
+    /* Projects */
+    .project-card { display: block; text-decoration: none; }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+    .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.125rem; font-weight: 600; color: var(--foreground); transition: color 0.3s; }
+    .project-card:hover .project-title { color: var(--primary); }
+    .project-icon { color: var(--muted-foreground); transition: color 0.3s; flex-shrink: 0; }
+    .project-card:hover .project-icon { color: var(--primary); }
+    .project-desc { font-size: 0.875rem; color: var(--muted-foreground); margin-bottom: 1rem; }
+    .project-tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+    .tag-cv { background: hsla(200, 70%, 55%, 0.2); color: var(--accent); }
+    .tag-nlp { background: hsla(16, 85%, 65%, 0.2); color: var(--primary); }
+    .tag-ml { background: #dcfce7; color: #15803d; }
+    .tag-ts { background: #f3e8ff; color: #7e22ce; }
+    .tag-trading { background: #fef9c3; color: #a16207; }
+    .tag-ds { background: #dbeafe; color: #1d4ed8; }
+    .tag-health { background: #fce7f3; color: #be185d; }
+
+    /* Contact */
+    .contact-text { font-size: 1.125rem; color: var(--muted-foreground); max-width: 32rem; margin: 0 auto 2.5rem; }
+    @media (min-width: 768px) { .contact-text { font-size: 1.25rem; } }
+    .contact-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.5rem; }
+    .contact-email { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 1.5rem; border-radius: 0.75rem; background: var(--card); text-decoration: none; box-shadow: var(--card-shadow); transition: all 0.3s; }
+    .contact-email:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); }
+    .contact-email svg { color: var(--primary); }
+    .contact-email span { color: var(--foreground); font-weight: 500; transition: color 0.3s; }
+    .contact-email:hover span { color: var(--primary); }
+    .contact-social { display: flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 0.75rem; background: var(--card); text-decoration: none; box-shadow: var(--card-shadow); transition: all 0.3s; }
+    .contact-social:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); }
+    .contact-social svg { color: var(--muted-foreground); transition: color 0.3s; }
+    .contact-social:hover svg { color: var(--primary); }
+
+    /* Footer */
+    footer { padding: 2rem 1.5rem; background: var(--card); border-top: 1px solid var(--border); text-align: center; }
+    footer p { font-size: 0.875rem; color: var(--muted-foreground); }
+
+    /* Icon styles */
+    .icon { display: inline-block; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">M<span>.</span>Odeh</a>
+        <div class="nav-links">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#achievements" class="nav-link">Achievements</a>
+          <a href="#certificates" class="nav-link">Certificates</a>
+          <a href="#skills" class="nav-link">Skills</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+          <svg id="menu-icon" class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+          <svg id="close-icon" class="icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu">
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#achievements" onclick="closeMobileMenu()">Achievements</a>
+        <a href="#certificates" onclick="closeMobileMenu()">Certificates</a>
+        <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+        <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-animation animate-fade-in-up">
+        <div class="orb-glow"></div>
+        <div class="orb-center"></div>
+        <div class="orbit-ring orbit-ring-1"></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+        <div class="orbit-node node-1"></div>
+        <div class="orbit-node node-2"></div>
+        <div class="orbit-node node-3"></div>
+        <div class="orbit-node-reverse node-4"></div>
+        <div class="orbit-node-reverse node-5"></div>
+        <div class="particle" style="top: 1rem; left: 2rem; width: 0.5rem; height: 0.5rem; background: hsla(16, 85%, 65%, 0.5); animation-delay: 0.5s;"></div>
+        <div class="particle" style="top: 3rem; right: 1.5rem; width: 0.75rem; height: 0.75rem; background: hsla(200, 70%, 55%, 0.4); animation-delay: 1s;"></div>
+        <div class="particle" style="bottom: 2rem; left: 1rem; width: 0.5rem; height: 0.5rem; background: var(--peach); animation-delay: 1.5s;"></div>
+        <div class="particle" style="bottom: 4rem; right: 2.5rem; width: 0.5rem; height: 0.5rem; background: hsla(16, 85%, 65%, 0.6); animation-delay: 2s;"></div>
+      </div>
+      <h1 class="animate-fade-in-up delay-100">AI & Machine Learning Engineer</h1>
+      <p class="hero-subtitle animate-fade-in-up delay-200">Passionate about building intelligent systems that create real impact using Machine Learning, Computer Vision, and Automation.</p>
+      <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/Resume/Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary animate-fade-in-up delay-300">
+        View My Resume
+        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section-card">
+    <div class="max-w-4xl">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="card">
+        <p class="about-text">
+          I am <span class="highlight">Mohammed Odeh</span>, AI & Machine Learning Engineer with 2+ years of hands-on Python experience, delivering end-to-end AI and data solutions. Skilled in computer vision, NLP, time-series forecasting, and deployment using Flask, cloud tools, and Docker. Passionate about solving real-world problems through AI and committed to continuous learning and innovation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" class="section-bg">
+    <div class="max-w-4xl">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+        </div>
+        <h2 class="section-title">Achievements</h2>
+      </div>
+      <div class="grid gap-6">
+        <div class="card card-highlight">
+          <div class="flex gap-4">
+            <div class="achievement-icon highlight">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="achievement-title">🏆 1st Place — March Machine Learning Mania 2025</h3>
+              <p class="achievement-desc">NCAA Predictions Competition</p>
+            </div>
+          </div>
+        </div>
+        <div class="card card-bg-card">
+          <div class="flex gap-4">
+            <div class="achievement-icon default">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="achievement-title">Kaggle Competition Expert</h3>
+              <p class="achievement-desc">Rank 74 of 202,770 • Highest: 22</p>
+              <div class="medals">
+                <span class="medals-label">MEDALS</span>
+                <div class="flex gap-3">
+                  <span class="medal"><span class="medal-dot medal-gold"></span> <span>1</span></span>
+                  <span class="medal"><span class="medal-dot medal-silver"></span> <span>1</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates" class="section-card">
+    <div class="max-w-4xl">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <h2 class="section-title">Certificates</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="cert-title">Machine Learning and Data Science Experience</h3>
+          <p class="cert-issuer">Apziva - Letter of Recommendation</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/Machine%20Learning%20and%20Data%20Science-Letter%20of%20Recommendation%20%20-%20Copy.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+        <div class="card">
+          <h3 class="cert-title">TensorFlow Developer Specialization Certificate</h3>
+          <p class="cert-issuer">DeepLearning.AI</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/TensorFlow%20Developer%20Certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+        <div class="card">
+          <h3 class="cert-title">Data Science Specialization Certificate</h3>
+          <p class="cert-issuer">IBM</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/IBM%20Data%20Science.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+        <div class="card">
+          <h3 class="cert-title">Machine Learning Certificate</h3>
+          <p class="cert-issuer">Stanford Online</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/Machine%20Learning.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+        <div class="card">
+          <h3 class="cert-title">Neural Networks and Deep Learning Certificate</h3>
+          <p class="cert-issuer">DeepLearning.AI</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/Neural%20Networks%20and%20Deep%20Learning.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+        <div class="card">
+          <h3 class="cert-title">Data Science Internship</h3>
+          <p class="cert-issuer">Data Glacier</p>
+          <a href="https://github.com/m-odeh/m-odeh.github.io/blob/main/github/Data%20Science%20Internship.pdf" target="_blank" rel="noopener noreferrer" class="cert-link">
+            View Certificate
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section-bg">
+    <div class="max-w-5xl">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+        </div>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">Languages</h3>
+          <div class="skill-badges"><span class="skill-badge">Python</span><span class="skill-badge">C++</span><span class="skill-badge">SQL</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">ML & Deep Learning</h3>
+          <div class="skill-badges"><span class="skill-badge">Scikit-learn</span><span class="skill-badge">TensorFlow</span><span class="skill-badge">PyTorch</span><span class="skill-badge">HuggingFace</span><span class="skill-badge">GANs</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">Computer Vision</h3>
+          <div class="skill-badges"><span class="skill-badge">OpenCV</span><span class="skill-badge">YOLO</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">NLP</h3>
+          <div class="skill-badges"><span class="skill-badge">LangChain</span><span class="skill-badge">NLTK</span><span class="skill-badge">Spacy</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">MLOps & Cloud</h3>
+          <div class="skill-badges"><span class="skill-badge">MLFlow</span><span class="skill-badge">MLOPS</span><span class="skill-badge">AzureML</span><span class="skill-badge">Spark</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">Deployment</h3>
+          <div class="skill-badges"><span class="skill-badge">FastAPI</span><span class="skill-badge">Docker</span><span class="skill-badge">Kubernetes</span><span class="skill-badge">Streamlit</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">Data Analysis</h3>
+          <div class="skill-badges"><span class="skill-badge">Pandas</span><span class="skill-badge">NumPy</span><span class="skill-badge">Matplotlib</span><span class="skill-badge">Plotly</span><span class="skill-badge">PandasProfiling</span></div>
+        </div>
+        <div class="card card-bg-card">
+          <h3 class="skill-category-title">Visualization</h3>
+          <div class="skill-badges"><span class="skill-badge">PowerBI</span><span class="skill-badge">Tableau</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section-card">
+    <div class="max-w-5xl">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path><circle cx="12" cy="13" r="2"></circle><path d="M12 15v5"></path></svg>
+        </div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href="https://github.com/m-odeh/German_Handwriting_OCR" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">German Handwriting OCR</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Optical Character Recognition for German handwritten text</p>
+          <span class="project-tag tag-cv">Computer Vision</span>
+        </a>
+        <a href="https://github.com/m-odeh/crypto-trading-bot" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Crypto Trading Bot</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Automated cryptocurrency trading system</p>
+          <span class="project-tag tag-trading">Trading</span>
+        </a>
+        <a href="https://github.com/m-odeh/FlipScan-AI" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">FlipScan-AI</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Pages Prediction with computer vision</p>
+          <span class="project-tag tag-cv">Computer Vision</span>
+        </a>
+        <a href="https://github.com/m-odeh/Talents-Insight-Tool" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Talents Insight Tool</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Natural Language Processing application</p>
+          <span class="project-tag tag-nlp">NLP</span>
+        </a>
+        <a href="https://github.com/m-odeh/Call-Success-ML-Advisor" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Call Success ML Advisor</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">ML Models with hyperparameter tuning using Grid-Search</p>
+          <span class="project-tag tag-ml">ML</span>
+        </a>
+        <a href="https://github.com/m-odeh/Stock-Forecaster" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Stock Forecaster</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Time Series forecasting for stock prices</p>
+          <span class="project-tag tag-ts">Time Series</span>
+        </a>
+        <a href="https://github.com/m-odeh/Happiness-Insight" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Happiness Insight</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Multiple ML Models for happiness analysis</p>
+          <span class="project-tag tag-ml">ML</span>
+        </a>
+        <a href="https://github.com/m-odeh/Capstone-Project" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">IBM Data Science Capstone</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">IBM Data Science Specialization Capstone Project</p>
+          <span class="project-tag tag-ds">Data Science</span>
+        </a>
+        <a href="https://github.com/m-odeh/Trading-Bot" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Trading Bot</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Based on Trading Webhook signals</p>
+          <span class="project-tag tag-trading">Trading</span>
+        </a>
+        <a href="https://github.com/m-odeh/Persistency-of-a-drug" target="_blank" rel="noopener noreferrer" class="card project-card">
+          <div class="project-header">
+            <h3 class="project-title">Drug Persistency</h3>
+            <svg class="project-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </div>
+          <p class="project-desc">Drug persistency prediction model</p>
+          <span class="project-tag tag-health">Healthcare ML</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section-bg">
+    <div class="max-w-3xl text-center">
+      <div class="section-header center">
+        <div class="section-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </div>
+        <h2 class="section-title">Get In Touch</h2>
+      </div>
+      <p class="contact-text">I'm open to collaborations, freelance projects, and AI/ML roles.</p>
+      <div class="contact-links">
+        <a href="mailto:odeh4893@gmail.com" class="contact-email">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+          <span>odeh4893@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/eng-odeh/" target="_blank" rel="noopener noreferrer" class="contact-social" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="https://github.com/m-odeh" target="_blank" rel="noopener noreferrer" class="contact-social" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Mohammed Odeh. Built with passion for AI.</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      menu.classList.toggle('open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      menu.classList.remove('open');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
